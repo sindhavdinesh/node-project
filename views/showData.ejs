@@ -1,0 +1,65 @@
+<%- include('sidebar') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+<div class="content">
+
+    <!-- Header -->
+    <div class="header">
+        <h2>📚 Book Collection</h2>
+        <a href="/" class="btn-link">➕ Add Book</a>
+    </div>
+
+    <% if (data.length > 0) { %>
+
+    <div class="card-grid">
+
+        <% data.forEach((item, index) => { %>
+        <div class="book-card">
+
+            <!-- Image -->
+            <div class="img-box">
+                <% if (item.image) { %>
+                    <img src="/uploads/<%= item.image %>" alt="Book">
+                <% } %>
+            </div>
+
+            <!-- Info -->
+            <div class="card-body">
+                <h3><%= item.name %></h3>
+                <p class="author">✍ <%= item.author %></p>
+
+                <div class="meta">
+                    <span>📚 <%= item.genre %></span>
+                    <span>📦 <%= item.total %></span>
+                </div>
+
+                <p class="desc">
+                    <%= item.description.substring(0, 80) %>...
+                </p>
+
+                <div class="actions">
+                    <a href="/edit/<%= item._id %>" class="edit">✏ Edit</a>
+                    <a href="/delete/<%= item._id %>" class="delete">🗑 Delete</a>
+                </div>
+            </div>
+
+        </div>
+        <% }) %>
+
+    </div>
+
+    <% } else { %>
+        <p class="no-data">🚫 No Books Found</p>
+    <% } %>
+
+</div>
+</body>
+</html>

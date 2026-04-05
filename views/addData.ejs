@@ -1,0 +1,89 @@
+<%- include('sidebar') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+<div class="content">
+
+    <!-- Header -->
+    <div class="header">
+        <h2>📚 Book store</h2>
+        <a href="/showData" class="btn-link">📖 View Books</a>
+    </div>
+
+    <h3 style="text-align:center; margin-bottom:20px;">✨ Add New Book</h3>
+
+    <form action="/addData" method="POST" enctype="multipart/form-data" class="form-container">
+
+        <div class="form-grid">
+
+            <!-- Image Upload with Preview -->
+            <div class="form-group">
+                <label>📷 Book Cover</label>
+                <input type="file" id="image" name="image" required onchange="previewImage(event)">
+                <img id="preview" style="margin-top:10px; width:100%; border-radius:10px; display:none;">
+            </div>
+
+            <!-- Book Name -->
+            <div class="form-group">
+                <label>📘 Book Name</label>
+                <input type="text" name="name" placeholder="Enter book name" required>
+            </div>
+
+            <!-- Author -->
+            <div class="form-group">
+                <label>✍ Author</label>
+                <input type="text" name="author" placeholder="Author name" required>
+            </div>
+
+            <!-- ISBN -->
+            <div class="form-group">
+                <label>🔢 ISBN</label>
+                <input type="text" name="isbn" placeholder="ISBN number" required>
+            </div>
+
+            <!-- Genre -->
+            <div class="form-group">
+                <label>🎭 Genre</label>
+                <input type="text" name="genre" placeholder="Category" required>
+            </div>
+
+            <!-- Total -->
+            <div class="form-group">
+                <label>📦 Total Books</label>
+                <input type="number" name="total" placeholder="Stock" required>
+            </div>
+
+        </div>
+
+        <!-- Description -->
+        <div class="form-group full-width">
+            <label>📝 Description</label>
+            <textarea name="description" rows="4" placeholder="Write about the book..." required></textarea>
+        </div>
+
+        <!-- Buttons -->
+        <div class="form-actions">
+            <button type="submit">🚀 Add Book</button>
+        </div>
+
+    </form>
+</div>
+
+<!-- JS for Image Preview -->
+<script>
+function previewImage(event) {
+    const preview = document.getElementById('preview');
+    preview.src = URL.createObjectURL(event.target.files[0]);
+    preview.style.display = 'block';
+}
+</script>
+
+</body>
+</html>
